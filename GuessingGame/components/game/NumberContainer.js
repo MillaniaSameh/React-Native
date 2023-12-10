@@ -11,17 +11,17 @@ export default function NumberContainer({ children }) {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 4,
-    borderColor: Colors.accent500,
+    // borderWidth: 4,
+    // borderColor: Colors.accent500,
     padding: 24,
-    margin: 24,
+    margin: 12,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
   },
   numberText: {
     color: Colors.accent500,
-    fontSize: 36,
-    fontWeight: "bold",
+    fontSize: 60,
+    fontFamily: "open-sans-bold",
   },
 });
