@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import Colors from "../../constants/colors";
 
 export default function SubTitle({ children }) {
   return (
@@ -13,11 +14,11 @@ const styles = StyleSheet.create({
     padding: 6,
     marginHorizontal: 12,
     marginVertical: 4,
-    borderBottomColor: "#97a5dc",
+    borderBottomColor: Colors.primary500,
     borderBottomWidth: 1,
   },
   subTitle: {
-    color: "#97a5dc",
+    color: Colors.primary500,
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",

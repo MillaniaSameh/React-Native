@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import MealDetails from "./MealDetails";
+import Colors from "../constants/colors";
 
 export default function MealItem({
   id,
@@ -77,5 +78,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     margin: 8,
+    color: Colors.primary800,
   },
 });
