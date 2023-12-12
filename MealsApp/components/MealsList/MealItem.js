@@ -7,8 +7,8 @@ import {
   Text,
   View,
 } from "react-native";
-import MealDetails from "./MealDetails";
-import Colors from "../constants/colors";
+import MealDetails from "../MealDetails";
+import Colors from "../../constants/colors";
 
 export default function MealItem({
   id,
