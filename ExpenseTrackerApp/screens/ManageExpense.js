@@ -1,12 +1,18 @@
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 
 import IconButton from "../components/ui/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../stores/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
+import { deleteExpense, storeExpense, updateExpense } from "../util/http";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
+import ErrorOverlay from "../components/ui/ErrorOverlay";
 
 export default function ManageExpense({ route, navigation }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+
   const expenseCtx = useContext(ExpensesContext);
 
   const editedExpenseId = route.params?.expenseId;
@@ -22,23 +28,45 @@ export default function ManageExpense({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {
-    expenseCtx.deleteExpense(editedExpenseId);
-    navigation.goBack();
+  async function deleteExpenseHandler() {
+    setIsLoading(true);
+    try {
+      await deleteExpense(editedExpenseId);
+      expenseCtx.deleteExpense(editedExpenseId);
+      navigation.goBack();
+    } catch {
+      setError("Could not delete expense - please try again later!");
+      setIsLoading(false);
+    }
   }
 
   function cancelHandler() {
     navigation.goBack();
   }
 
-  function confirmHandler(expenseData) {
-    if (isEditing) {
-      expenseCtx.updateExpense(editedExpenseId, expenseData);
-    } else {
-      expenseCtx.addExpense(expenseData);
+  async function confirmHandler(expenseData) {
+    setIsLoading(true);
+    try {
+      if (isEditing) {
+        expenseCtx.updateExpense(editedExpenseId, expenseData);
+        updateExpense(editedExpenseId, expenseData);
+      } else {
+        const id = await storeExpense(expenseData);
+        expenseCtx.addExpense({ ...expenseData, id: id });
+      }
+      navigation.goBack();
+    } catch {
+      setError("Could not save data - please try again later!");
+      setIsLoading(false);
     }
+  }
 
-    navigation.goBack();
+  if (error && !isLoading) {
+    return <ErrorOverlay message={error} />;
+  }
+
+  if (isLoading) {
+    return <LoadingOverlay />;
   }
 
   return (
