@@ -18,6 +18,7 @@
 - **redux** 	-> https://redux-toolkit.js.org/tutorials/quick-start
 - **storage** -> https://react-native-async-storage.github.io/async-storage/docs/install/
 - **Navigation** -> https://reactnavigation.org/
+- **expo-imagepicker** -> https://docs.expo.dev/versions/latest/sdk/imagepicker/
 
 ### Drawer Navigator fix
 Add the below code in babel.config.js
