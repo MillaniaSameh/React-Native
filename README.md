@@ -19,6 +19,9 @@
 - **storage** -> https://react-native-async-storage.github.io/async-storage/docs/install/
 - **Navigation** -> https://reactnavigation.org/
 - **expo-imagepicker** -> https://docs.expo.dev/versions/latest/sdk/imagepicker/
+- **expo-location** -> https://docs.expo.dev/versions/latest/sdk/location/
+- **expo-mapview** -> https://docs.expo.dev/versions/latest/sdk/map-view/
+- **expo-sqlite** -> https://docs.expo.dev/versions/latest/sdk/sqlite/
 
 ### Drawer Navigator fix
 Add the below code in babel.config.js
